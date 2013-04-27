@@ -1,6 +1,8 @@
 Whatsup::Application.routes.draw do
   devise_for :users
 
+  get "test/test"
+
   root :to => "home#index"
   
   # The priority is based upon order of creation:

@@ -1,0 +1,7 @@
+<%= user_signed_in? %>
+<br>
+
+<%= current_user.email %>
+
+
+<%= button_to "sign out", destroy_user_session_url, :method => :delete, :class => :destroy %>
