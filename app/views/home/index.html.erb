@@ -10,6 +10,14 @@
 <%= image_tag map_request %>
 
 <h3>Events within <%= @distance %> miles</h3>
+
+<%= form_tag home_url, :method => :get do %>
+  <p>
+    <%= text_field_tag :distance %>
+    <%= submit_tag "Change Distance" %>
+  </p>
+<% end %>
+
 <ul>
 <% @nearby_events.each do |event| %>
   <li><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</li>
@@ -17,3 +25,5 @@
 </ul>
 <br>
 <%= link_to "Add Event", new_event_url %>
+<br>
+<%= link_to "All Events", events_url %>

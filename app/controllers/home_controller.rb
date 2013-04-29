@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     if params[:distance]
       @distance = params[:distance]
     else
-      @distance = 10
+      @distance = 3
     end
 
     respond_to do |format|

@@ -31,6 +31,10 @@ events = Event.create([
         description: "Lots of really cool stuff you won't want to miss.",
         datetime: DateTime.now + 4.days + 9.hours,
         address: "1340 Hopkins St, Berkeley, CA"},
+      {title: "Happy Hour at The Albatross Pub",
+        description: "Come enjoy some cheap drinks great atmosphere.",
+        datetime: DateTime.now + 2.days + 12.hours,
+        address: "1822 San Pablo Avenue, Berkeley, CA 94710"},
       ])
 
 # DateTime.new(2013,7,27,16,0,0)
