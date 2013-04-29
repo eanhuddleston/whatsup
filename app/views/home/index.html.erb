@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <% @current_user = current_user %>
 
 <% @user_loc = [@current_user.latitude, @current_user.longitude] %>
@@ -18,5 +16,4 @@
 <% end %>
 </ul>
 <br>
-LINKS:<br>
-<%= link_to "Add an event", new_event_url %>
+<%= link_to "Add Event", new_event_url %>

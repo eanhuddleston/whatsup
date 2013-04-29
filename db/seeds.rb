@@ -17,3 +17,20 @@ users = User.create([
         password: "testtest", password_confirmation: "testtest",
         address: "Evans Hall, UC Berkeley" }
       ])
+
+events = Event.create([
+      {title: "Open Mic Night at The Starry Plough Pub",
+        description: "Come and hear some great Irish music.",
+        datetime: DateTime.now + 3.days + 5.hours,
+        address: "5612 College Avenue, Oakland, CA 94618"},
+      {title: "Berkeley International Kite Festival",
+        description: "Kite making, contests, exhibitions and kite dancing.",
+        datetime: DateTime.now + 5.days + 5.hours,
+        address: "Cesar Chavez Park, Berkeley, CA"},
+      {title: "Garage Sale",
+        description: "Lots of really cool stuff you won't want to miss.",
+        datetime: DateTime.now + 4.days + 9.hours,
+        address: "1340 Hopkins St, Berkeley, CA"},
+      ])
+
+# DateTime.new(2013,7,27,16,0,0)
