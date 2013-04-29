@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<% @current_user = current_user %>
+<% @user_loc = [@current_user.latitude, @current_user.longitude] %>
+
+<p>
+  <% @nearby_events = find_nearby_events(@user_loc, @distance) %>
+  <% map_request = create_request(@user_loc, @nearby_events) %>
+</p>
+
+<%= image_tag map_request %>
+
+<h3>Events within <%= @distance %> miles</h3>
+<ul>
+<% @nearby_events.each do |event| %>
+  <li><%= link_to event.address, event %> (<%= event.distance.round(2) %> miles)</li>
+<% end %>
+</ul>

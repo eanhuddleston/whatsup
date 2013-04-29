@@ -1,9 +1,10 @@
 Whatsup::Application.routes.draw do
-  resources :events
-
   devise_for :users
+  resources :events
+  resources :maps, :only => [:index]
 
   get "test/test"
+  match '/home' => 'home#index'
 
   root :to => "home#index"
   
