@@ -1,11 +1,11 @@
 <% simple_api_key = "AIzaSyCzXTBjGeLO5_OvbjSjNtxB3ROTWZwZo8Q" %>
 <% @current_user = current_user %>
 
-<% @user_loc = [@current_user.latitude, @current_user.longitude] %>
+<%# @user_loc = [@current_user.latitude, @current_user.longitude] %>
 
 <p>
-  <% @nearby_events = find_nearby_events(@user_loc, @distance) %>
-  <% map_request = create_request(@user_loc, @nearby_events, 
+  <%# @nearby_events = find_nearby_events(@user_loc, @distance) %>
+  <% map_request = create_request(@user_loc, @events, 
       simple_api_key) %>
 </p>
 
@@ -21,7 +21,7 @@
 <% end %>
 
 <ul>
-<% @nearby_events.each do |event| %>
+<% @events.each do |event| %>
   <li><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</li>
 <% end %>
 </ul>
