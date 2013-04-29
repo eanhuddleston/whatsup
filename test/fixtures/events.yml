@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :text
+#  datetime    :datetime
+#  address     :string(255)
+#  latitude    :float
+#  longitude   :float
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  datetime: 2013-04-28 20:49:46
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+
+two:
+  title: MyString
+  description: MyText
+  datetime: 2013-04-28 20:49:46
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
