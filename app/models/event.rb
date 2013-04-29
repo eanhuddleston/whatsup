@@ -17,4 +17,5 @@ class Event < ActiveRecord::Base
   attr_accessible :address, :datetime, :description, :latitude, :longitude, :title
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
+  validates :address, :datetime, :description, :title, :presence => true
 end
