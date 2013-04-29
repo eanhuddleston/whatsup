@@ -1,10 +1,12 @@
+<% simple_api_key = "AIzaSyCzXTBjGeLO5_OvbjSjNtxB3ROTWZwZo8Q" %>
 <% @current_user = current_user %>
 
 <% @user_loc = [@current_user.latitude, @current_user.longitude] %>
 
 <p>
   <% @nearby_events = find_nearby_events(@user_loc, @distance) %>
-  <% map_request = create_request(@user_loc, @nearby_events) %>
+  <% map_request = create_request(@user_loc, @nearby_events, 
+      simple_api_key) %>
 </p>
 
 <%= image_tag map_request %>
