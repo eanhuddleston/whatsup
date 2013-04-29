@@ -4,7 +4,10 @@ class HomeController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    # @user_loc = [37.853134, -122.267646]
+    unless user_signed_in?
+      redirect_to new_user_session_url and return
+    end
+
     if params[:distance]
       @distance = params[:distance]
     else

@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
+
 <% @current_user = current_user %>
+
 <% @user_loc = [@current_user.latitude, @current_user.longitude] %>
 
 <p>
@@ -12,6 +14,9 @@
 <h3>Events within <%= @distance %> miles</h3>
 <ul>
 <% @nearby_events.each do |event| %>
-  <li><%= link_to event.address, event %> (<%= event.distance.round(2) %> miles)</li>
+  <li><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</li>
 <% end %>
 </ul>
+<br>
+LINKS:<br>
+<%= link_to "Add an event", new_event_url %>
