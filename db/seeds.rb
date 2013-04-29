@@ -9,10 +9,11 @@
 users = User.create([
       {email: "user1@gmail.com", 
         password: "testtest", password_confirmation: "testtest",
-        address: "2007 Prince ST, Berkeley CA" }
-      #   , 
-      # {email: "user2@gmail.com", 
-      #   password: "testtest", password_confirmation: "testtest" },
-      # {email: "user3@gmail.com", 
-      #   password: "testtest", password_confirmation: "testtest" }
+        address: "2007 Prince ST, Berkeley CA" }, 
+      {email: "user2@gmail.com", 
+        password: "testtest", password_confirmation: "testtest",
+        address: "160 Folsom ST, San Francisco" },
+      {email: "user3@gmail.com", 
+        password: "testtest", password_confirmation: "testtest",
+        address: "Evans Hall, UC Berkeley" }
       ])
