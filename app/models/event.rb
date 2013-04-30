@@ -18,4 +18,8 @@ class Event < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
   validates :address, :datetime, :description, :title, :presence => true
+
+  has_many :event_categories
+  has_many :categories, :through => :event_categories
+
 end
