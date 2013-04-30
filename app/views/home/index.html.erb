@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
 function initialize() {
-  var events = <%= @events.to_json.html_safe %>
+  var events = <%= @trimmed_events.to_json.html_safe %>
 
   var locations = []
   for (i = 0; i < events.length; i++) {
@@ -14,13 +14,12 @@ function initialize() {
   }
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 1,
+    zoom: 10,
     center: new google.maps.LatLng(-33.92, 151.25),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
   // map.addListener("tilesloaded", function() {
-    console.log("is this even called?");
 
     var infoWindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
@@ -51,17 +50,29 @@ function initialize() {
 <h3>Events within <%= @distance %> miles</h3>
 
 <%= form_tag home_url, :method => :get do %>
-  <p>
     <%= text_field_tag :distance %>
-    <%= submit_tag "Change Distance" %>
-  </p>
+    Search Distance
+    <br>
+    <% @avail_categories.each do |category| %>
+      <%= check_box_tag(
+            "categories[]",
+            category.id,
+            @selected_categories.include?(category)
+          )
+      %>
+    <%= category.name %><br>
+  <% end %>
+  <%= hidden_field_tag :prev_distance, @distance %>
+  <%= submit_tag "Update View" %>
+
 <% end %>
 
 <ul>
-<% @events.each do |event| %>
+<% @trimmed_events.each do |event| %>
   <li><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</li>
 <% end %>
 </ul>
+
 <br>
 <%= link_to "Add Event", new_event_url %>
 <br>

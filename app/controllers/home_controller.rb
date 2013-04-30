@@ -11,13 +11,34 @@ class HomeController < ApplicationController
     @user = current_user
     @user_loc = [@user.latitude, @user.longitude]
 
-    if params[:distance]
+    if params[:distance] && params[:distance] != ""
       @distance = params[:distance]
+    elsif params[:prev_distance]
+      @distance = params[:prev_distance]
     else
       @distance = 3
     end
 
+    if params[:categories] && ( params[:distance] == "" )
+      @selected_categories = params[:categories].map {|id| Category.find(id)}
+    else
+      @selected_categories = Category.all
+    end
+
     @events = Event.near(@user_loc, @distance)
+    @trimmed_events = []
+    @events.each do |event|
+      if @selected_categories.include?(event.categories[0])
+        @trimmed_events << event
+      end
+    end
+
+    @avail_categories = []
+    @events.each do |event|
+      event.categories.each do |category|
+        @avail_categories << category unless @avail_categories.include?(category)
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb
