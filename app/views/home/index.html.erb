@@ -5,6 +5,7 @@
 
 <script type="text/javascript">
 function initialize() {
+  var user_loc = <%= @user_loc.to_json.html_safe %>
   var events_within_range = <%= @events_within_range.to_json.html_safe %>
   
   var locs_within_range = []
@@ -29,9 +30,15 @@ function initialize() {
 
   // map.addListener("tilesloaded", function() {
 
+    // Add home marker in green
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(user_loc[0], user_loc[1]),
+      icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+      map: map
+    });
+
     // Add only events of selected categories to map
     for (var i = 0; i < locations.length; i++) { 
-      console.log("it goes!");
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
