@@ -38,7 +38,11 @@ events = Event.create([
       {title: "Museum Grand Opening",
         description: "See some neato stuff.",
         datetime: DateTime.now + 6.days + 12.hours,
-        address: "1500 Leimert Boulevard, Oakland, CA 94602"}
+        address: "1500 Leimert Boulevard, Oakland, CA 94602"},
+      {title: "San Francisco Art Street Fair",
+        description: "Come experience the lively art that San Fran has to offer.",
+        datetime: DateTime.now + 7.days + 12.hours,
+        address: "160 Folsom ST, San Francisco, CA"}
       ])
 
 # DateTime.new(2013,7,27,16,0,0)

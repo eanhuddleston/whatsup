@@ -1,0 +1,28 @@
+<% simple_api_key = "AIzaSyCzXTBjGeLO5_OvbjSjNtxB3ROTWZwZo8Q" %>
+<% @current_user = current_user %>
+
+<p>
+  <% map_request = create_request(@user_loc, @events, 
+      simple_api_key) %>
+</p>
+
+<%= image_tag map_request %>
+
+<h3>Events within <%= @distance %> miles</h3>
+
+<%= form_tag home_url, :method => :get do %>
+  <p>
+    <%= text_field_tag :distance %>
+    <%= submit_tag "Change Distance" %>
+  </p>
+<% end %>
+
+<ul>
+<% @events.each do |event| %>
+  <li><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+<br>
+<%= link_to "Add Event", new_event_url %>
+<br>
+<%= link_to "All Events", events_url %>

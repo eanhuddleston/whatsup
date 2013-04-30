@@ -1,0 +1,98 @@
+<!-- <div id="map-canvas" style="width: 500px; height: 400px;"></div>
+    <script>
+  window.initialize = function () {
+    var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+    var mapOptions = {
+      zoom: 4,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+    console.log(map);
+    console.log(myLatlng);
+    console.log(google.maps);
+    console.log(google.maps.Marker);
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Hello World!'
+    });
+
+  }
+
+  function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+        'callback=initialize';
+    document.body.appendChild(script);
+  }
+
+  loadScript();
+    </script>
+ -->
+
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+   <title>Whatsup</title>
+
+
+   <meta content="authenticity_token" name="csrf-param" />
+ <meta content="jQ/fKI3BtVQ3mkLtaGV3BR11JGYhrIGrawoHco3ccCc=" name="csrf-token" />
+ </head>
+ <body>
+   <p class="notice"></p>
+   <p class="alert"></p>
+
+   <div class="hmenu">
+       user1@gmail.com | 
+   <a href="/users/sign_out" data-method="delete" rel="nofollow">Logout</a>        
+
+   </div>
+
+   <div id="map-canvas" style="width: 500px; height: 400px;"></div>
+ <script>
+   window.initialize = function () {
+     var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+     var mapOptions = {
+       zoom: 4,
+       center: myLatlng,
+       mapTypeId: google.maps.MapTypeId.ROADMAP
+     };
+
+     var map = new google.maps.Map(document.getElementById('map-canvas'),
+         mapOptions);
+
+     console.log(map);
+     console.log(myLatlng);
+     console.log(google.maps);
+     console.log(google.maps.Marker);
+
+     var marker = new google.maps.Marker({
+       position: myLatlng,
+       map: map,
+       title: 'Hello World!'
+     });
+
+   };
+
+   function loadScript() {
+     var script = document.createElement('script');
+     script.type = 'text/javascript';
+     script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+         'callback=initialize';
+     document.body.appendChild(script);
+   };
+
+   loadScript();
+ </script>
+
+
+ </body>
+ </html>
