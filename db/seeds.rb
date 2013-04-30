@@ -18,31 +18,47 @@ users = User.create([
         address: "Evans Hall, UC Berkeley" }
       ])
 
+categories = Category.create([
+      {name: "Street Fair"}, #1
+      {name: "Live Music"}, #2
+      {name: "Happy Hour"}, #3
+      {name: "Garage Sale"}, #4
+      {name: "Festival"}, #5
+      {name: "Art"}, #6
+      {name: "General"} #7
+      ])
+
 events = Event.create([
       {title: "Open Mic Night at The Starry Plough Pub",
         description: "Come and hear some great Irish music.",
         datetime: DateTime.now + 3.days + 5.hours,
-        address: "5612 College Avenue, Oakland, CA 94618"},
+        address: "5612 College Avenue, Oakland, CA 94618",
+        category_ids: [2]},
       {title: "Berkeley International Kite Festival",
         description: "Kite making, contests, exhibitions and kite dancing.",
         datetime: DateTime.now + 5.days + 5.hours,
-        address: "Cesar Chavez Park, Berkeley, CA"},
+        address: "Cesar Chavez Park, Berkeley, CA",
+        category_ids: [5]},
       {title: "Garage Sale",
         description: "Lots of really cool stuff you won't want to miss.",
         datetime: DateTime.now + 4.days + 9.hours,
-        address: "1340 Hopkins St, Berkeley, CA"},
+        address: "1340 Hopkins St, Berkeley, CA",
+        category_ids: [4]},
       {title: "Happy Hour at The Albatross Pub",
         description: "Come enjoy some cheap drinks great atmosphere.",
         datetime: DateTime.now + 2.days + 12.hours,
-        address: "1822 San Pablo Avenue, Berkeley, CA 94710"},
+        address: "1822 San Pablo Avenue, Berkeley, CA 94710",
+        category_ids: [3]},
       {title: "Museum Grand Opening",
         description: "See some neato stuff.",
         datetime: DateTime.now + 6.days + 12.hours,
-        address: "1500 Leimert Boulevard, Oakland, CA 94602"},
+        address: "1500 Leimert Boulevard, Oakland, CA 94602",
+        category_ids: [7]},
       {title: "San Francisco Art Street Fair",
         description: "Come experience the lively art that San Fran has to offer.",
         datetime: DateTime.now + 7.days + 12.hours,
-        address: "160 Folsom ST, San Francisco, CA"}
+        address: "160 Folsom ST, San Francisco, CA",
+        category_ids: [1]}
       ])
 
 # DateTime.new(2013,7,27,16,0,0)

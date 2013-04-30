@@ -21,7 +21,8 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @events }
+      format.json { render json: @events, 
+          :include => [:categories => {:only => :name}] }
     end
   end
 
