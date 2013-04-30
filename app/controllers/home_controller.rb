@@ -25,16 +25,16 @@ class HomeController < ApplicationController
       @selected_categories = Category.all
     end
 
-    @events = Event.near(@user_loc, @distance)
+    @events_within_range = Event.near(@user_loc, @distance)
     @trimmed_events = []
-    @events.each do |event|
+    @events_within_range.each do |event|
       if @selected_categories.include?(event.categories[0])
         @trimmed_events << event
       end
     end
 
     @avail_categories = []
-    @events.each do |event|
+    @events_within_range.each do |event|
       event.categories.each do |category|
         @avail_categories << category unless @avail_categories.include?(category)
       end

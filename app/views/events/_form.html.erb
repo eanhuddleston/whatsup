@@ -27,6 +27,15 @@
     <%= f.label :address %><br />
     <%= f.text_field :address %>
   </div>
+  <% Category.all.each do |category| %>
+    <%= check_box_tag(
+          "event[category_ids][]",
+          category.id,
+          false
+        )
+    %>
+    <%= category.name %><br>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

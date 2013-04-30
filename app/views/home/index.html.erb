@@ -5,12 +5,20 @@
 
 <script type="text/javascript">
 function initialize() {
-  var events = <%= @trimmed_events.to_json.html_safe %>
+  var events_within_range = <%= @events_within_range.to_json.html_safe %>
+  
+  var locs_within_range = []
+  for (i = 0; i < events_within_range.length; i++) {
+    locs_within_range[i] = [events_within_range[i]['title'], events_within_range[i]['latitude'], 
+        events_within_range[i]['longitude']];
+  }
+
+  var trimmed_events = <%= @trimmed_events.to_json.html_safe %>
 
   var locations = []
-  for (i = 0; i < events.length; i++) {
-    locations[i] = [events[i]['title'], events[i]['latitude'], 
-        events[i]['longitude']];
+  for (i = 0; i < trimmed_events.length; i++) {
+    locations[i] = [trimmed_events[i]['title'], trimmed_events[i]['latitude'], 
+        trimmed_events[i]['longitude']];
   }
 
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -21,19 +29,15 @@ function initialize() {
 
   // map.addListener("tilesloaded", function() {
 
-    var infoWindow = new google.maps.InfoWindow();
-    var bounds = new google.maps.LatLngBounds();
-
-
+    // Add only events of selected categories to map
     for (var i = 0; i < locations.length; i++) { 
+      console.log("it goes!");
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
       });
 
-      var myLatLng = new google.maps.LatLng(locations[i][1], locations[i][2]);
-      bounds.extend(myLatLng);
-      map.fitBounds(bounds);
+      var infoWindow = new google.maps.InfoWindow();
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
@@ -42,6 +46,17 @@ function initialize() {
         }
       })(marker, i));
     }
+
+    var bounds = new google.maps.LatLngBounds();
+
+    // Set map bounds to include all events within range, even if
+    // filtered out by category
+    for (var j = 0; j < locs_within_range.length; j++) {
+      var myLatLng = new google.maps.LatLng(locs_within_range[j][1], locs_within_range[j][2]);
+      bounds.extend(myLatLng);
+      map.fitBounds(bounds);
+    }
+
   // });
 
 }
