@@ -17,7 +17,6 @@ function initialize() {
   eM.extendBounds();
   eM.addHomeMarker();
   eM.addEventMarkers();
-  // eM.addTilesLoadedListener();
 }
 
 function eventManager() {
@@ -27,14 +26,6 @@ function eventManager() {
   that.map = null;
   that.infoWindow = new google.maps.InfoWindow();
 }
-
-// eventManager.prototype.addTilesLoadedListener = function() {
-//   var that = this;
-//   that.map.addListener('tilesloaded', function() {
-//     that.addHomeMarker.call(that);
-//     that.addEventMarkers.call(that);
-//   });
-// }
 
 eventManager.prototype.fillEventArrays = function() {
   var that = this;
