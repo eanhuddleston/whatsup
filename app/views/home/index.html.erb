@@ -7,7 +7,7 @@
 
 window.user_loc = <%= @user_loc.to_json.html_safe %>
 window.events_within_range = <%= @events_within_range.to_json.html_safe %>
-window.trimmed_events = <%= @trimmed_events.to_json.html_safe %>;
+window.trimmed_events = <%= @trimmed_events.to_json.html_safe %>
 
 function initialize() {
   var eM = new eventManager();
@@ -52,7 +52,6 @@ eventManager.prototype.instantiateMap = function() {
 eventManager.prototype.addHomeMarker = function() {
   var that = this;
 
-  // Add home marker in green
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(user_loc[0], user_loc[1]),
     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
@@ -60,13 +59,13 @@ eventManager.prototype.addHomeMarker = function() {
   });
 }
 
+// Set map bounds to include all events within range, even if
+// filtered out by category
 eventManager.prototype.extendBounds = function() {
   var that = this;
 
   var bounds = new google.maps.LatLngBounds();
 
-  // Set map bounds to include all events within range, even if
-  // filtered out by category
   for (var j = 0; j < that.locs_within_range.length; j++) {
     var myLatLng = new google.maps.LatLng(that.locs_within_range[j][1], that.locs_within_range[j][2]);
     bounds.extend(myLatLng);
@@ -75,8 +74,6 @@ eventManager.prototype.extendBounds = function() {
 }
 
 eventManager.prototype.addEventMarkers = function() {
-  // map.addListener("tilesloaded", function() {
-
   var that = this;
 
   // Add only events of selected categories to map
@@ -95,7 +92,6 @@ eventManager.prototype.addEventMarkers = function() {
       }
     })(marker, i));
   }
-  // });
 }
 
 </script>
