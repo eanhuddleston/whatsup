@@ -11,39 +11,45 @@ window.trimmed_events = <%= @trimmed_events.to_json.html_safe %>;
 
 function initialize() {
   var eM = new eventManager();
-  eM.setup();
-  eM.addMarkers();
+  eM.fillEventArrays();
+  eM.instantiateMap();
+  eM.addHomeMarker();
+  eM.extendBounds();
+  eM.addEventMarkers();
 }
 
 function eventManager() {
   var that = this;
+  that.locs_within_range = [];
+  that.locations = [];
+  that.map = null;
 }
 
-eventManager.prototype.setup = function() {
+eventManager.prototype.fillEventArrays = function() {
   var that = this;
   
-  that.locs_within_range = []
   for (i = 0; i < events_within_range.length; i++) {
     that.locs_within_range[i] = [events_within_range[i]['title'], events_within_range[i]['latitude'], 
         events_within_range[i]['longitude']];
   }
 
-  that.locations = [];
   for (i = 0; i < trimmed_events.length; i++) {
     that.locations[i] = [trimmed_events[i]['title'], trimmed_events[i]['latitude'], 
         trimmed_events[i]['longitude']];
   }
+};
+
+eventManager.prototype.instantiateMap = function() {
+  var that = this;
 
   that.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: new google.maps.LatLng(user_loc[0], user_loc[1]),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-};
+}
 
-eventManager.prototype.addMarkers = function() {
-  // map.addListener("tilesloaded", function() {
-
+eventManager.prototype.addHomeMarker = function() {
   var that = this;
 
   // Add home marker in green
@@ -52,6 +58,26 @@ eventManager.prototype.addMarkers = function() {
     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
     map: that.map
   });
+}
+
+eventManager.prototype.extendBounds = function() {
+  var that = this;
+
+  var bounds = new google.maps.LatLngBounds();
+
+  // Set map bounds to include all events within range, even if
+  // filtered out by category
+  for (var j = 0; j < that.locs_within_range.length; j++) {
+    var myLatLng = new google.maps.LatLng(that.locs_within_range[j][1], that.locs_within_range[j][2]);
+    bounds.extend(myLatLng);
+    that.map.fitBounds(bounds);
+  }
+}
+
+eventManager.prototype.addEventMarkers = function() {
+  // map.addListener("tilesloaded", function() {
+
+  var that = this;
 
   // Add only events of selected categories to map
   for (var i = 0; i < that.locations.length; i++) { 
@@ -69,17 +95,6 @@ eventManager.prototype.addMarkers = function() {
       }
     })(marker, i));
   }
-
-  var bounds = new google.maps.LatLngBounds();
-
-  // Set map bounds to include all events within range, even if
-  // filtered out by category
-  for (var j = 0; j < that.locs_within_range.length; j++) {
-    var myLatLng = new google.maps.LatLng(that.locs_within_range[j][1], that.locs_within_range[j][2]);
-    bounds.extend(myLatLng);
-    that.map.fitBounds(bounds);
-  }
-
   // });
 }
 
