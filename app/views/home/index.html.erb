@@ -59,7 +59,7 @@ eventManager.prototype.addHomeMarker = function() {
     map: that.map
   });
 
-  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+  google.maps.event.addListener(marker, 'click', (function(marker) {
     return function() {
       that.infoWindow.setContent("Home");
       that.infoWindow.open(that.map, marker);
