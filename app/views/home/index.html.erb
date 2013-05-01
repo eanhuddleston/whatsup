@@ -139,7 +139,7 @@ eventManager.prototype.addEventMarkers = function() {
 
 <ul>
 <% @trimmed_events.each do |event| %>
-  <li><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</li>
+  <div data-eventid="<%=event.id%>"><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</div>
 <% end %>
 </ul>
 
