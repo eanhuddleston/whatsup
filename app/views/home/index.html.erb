@@ -23,6 +23,7 @@ function eventManager() {
   that.locs_within_range = [];
   that.locations = [];
   that.map = null;
+  that.infoWindow = new google.maps.InfoWindow();
 }
 
 eventManager.prototype.fillEventArrays = function() {
@@ -57,6 +58,13 @@ eventManager.prototype.addHomeMarker = function() {
     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
     map: that.map
   });
+
+  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    return function() {
+      that.infoWindow.setContent("Home");
+      that.infoWindow.open(that.map, marker);
+    }
+  })(marker, i));
 }
 
 // Set map bounds to include all events within range, even if
@@ -83,12 +91,10 @@ eventManager.prototype.addEventMarkers = function() {
       map: that.map
     });
 
-    var infoWindow = new google.maps.InfoWindow();
-
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
-        infoWindow.setContent(that.locations[i][0]);
-        infoWindow.open(that.map, marker);
+        that.infoWindow.setContent(that.locations[i][0]);
+        that.infoWindow.open(that.map, marker);
       }
     })(marker, i));
   }
