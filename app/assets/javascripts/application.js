@@ -15,3 +15,114 @@
 //= require bootstrap
 //= require_tree .
 
+function initialize() {
+  var eM = new eventManager();
+  eM.fillEventArrays();
+  eM.instantiateMap();
+  eM.extendBounds();
+  eM.addHomeMarker();
+  eM.addEventMarkers();
+}
+
+function eventManager() {
+  var that = this;
+  that.locs_within_range = [];
+  that.locations = [];
+  that.map = null;
+  that.infoWindow = new google.maps.InfoWindow();
+}
+
+eventManager.prototype.fillEventArrays = function() {
+  var that = this;
+
+  for (i = 0; i < events_within_range.length; i++) {
+    that.locs_within_range[i] = [events_within_range[i]['title'], events_within_range[i]['latitude'],
+        events_within_range[i]['longitude']];
+  }
+
+  for (i = 0; i < trimmed_events.length; i++) {
+    that.locations[i] = [trimmed_events[i]['title'], trimmed_events[i]['latitude'],
+        trimmed_events[i]['longitude']];
+  }
+};
+
+eventManager.prototype.instantiateMap = function() {
+  var that = this;
+
+  that.map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: new google.maps.LatLng(user_loc[0], user_loc[1]),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+};
+
+eventManager.prototype.addHomeMarker = function() {
+  var that = this;
+
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(user_loc[0], user_loc[1]),
+    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    map: that.map
+  });
+
+  google.maps.event.addListener(marker, 'click', (function(marker) {
+    return function() {
+      that.infoWindow.setContent('Home');
+      that.infoWindow.open(that.map, marker);
+    };
+  })(marker, i));
+};
+
+// Set map bounds to include all events within range, even if
+// filtered out by category
+eventManager.prototype.extendBounds = function() {
+  var that = this;
+
+  var bounds = new google.maps.LatLngBounds();
+
+  for (var j = 0; j < that.locs_within_range.length; j++) {
+    var myLatLng = new google.maps.LatLng(that.locs_within_range[j][1], that.locs_within_range[j][2]);
+    bounds.extend(myLatLng);
+    that.map.fitBounds(bounds);
+  }
+};
+
+eventManager.prototype.addEventMarkers = function() {
+  var that = this;
+
+  // Add only events of selected categories to map
+  for (var i = 0; i < that.locations.length; i++) {
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(that.locations[i][1], that.locations[i][2]),
+      map: that.map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        that.infoWindow.setContent(that.locations[i][0]);
+        that.infoWindow.open(that.map, marker);
+      };
+    })(marker, i));
+
+    that.addMousoverListeners(marker, i);
+  }
+};
+
+eventManager.prototype.addMousoverListeners = function(marker, i) {
+  var that = this;
+
+  google.maps.event.addListener(marker, 'mouseover', (function(i) {
+    return function() {
+      var evId = i + 1;
+      $('div[data-eventid]').removeClass('highlight');
+      $('div[data-eventid="' + evId + '"]').addClass('highlight');
+    };
+  })(i));
+
+  google.maps.event.addListener(marker, 'mouseout', (function(i) {
+    return function() {
+      var evId = i + 1;
+      $('div[data-eventid]').removeClass('highlight');
+    };
+  })(i));
+};
