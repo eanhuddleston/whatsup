@@ -17,51 +17,67 @@
 
 function initialize() {
   var eM = new eventManager();
-  eM.fillEventArrays();
-  eM.instantiateMap();
+  eM.fillEventsWithinRangeArray();
+  eM.fillTrimmedEventsArray();
+  eM.instantiateMap(userLoc);
   eM.extendBounds();
   eM.addHomeMarker();
   eM.addEventMarkers();
 }
 
+function initializeShowPageMap() {
+  var eM = new eventManager();
+  eM.fillTrimmedEventsArray();
+  eM.instantiateMap( [locations[0][1], locations[0][2]] );
+  // eM.extendBounds();
+  // eM.addHomeMarker();
+  eM.addEventMarkers();
+}
+
 function eventManager() {
   var that = this;
+
   that.locs_within_range = [];
   that.locations = [];
   that.map = null;
   that.infoWindow = new google.maps.InfoWindow();
 }
 
-eventManager.prototype.fillEventArrays = function() {
+eventManager.prototype.fillEventsWithinRangeArray = function() {
   var that = this;
 
-  for (i = 0; i < events_within_range.length; i++) {
-    that.locs_within_range[i] = [events_within_range[i]['title'],
-        events_within_range[i]['latitude'],
-        events_within_range[i]['longitude'],
-        events_within_range[i]['id'],
-        events_within_range[i]['address'],
-        events_within_range[i]['datetime']
-    ];
-  }
-
-  for (i = 0; i < trimmed_events.length; i++) {
-    that.locations[i] = [trimmed_events[i]['title'],
-        trimmed_events[i]['latitude'],
-        trimmed_events[i]['longitude'],
-        trimmed_events[i]['id'],
-        trimmed_events[i]['address'],
-        trimmed_events[i]['datetime']
+  for (i = 0; i < eventsWithinRange.length; i++) {
+    that.locs_within_range[i] = [eventsWithinRange[i]['title'],
+        eventsWithinRange[i]['latitude'],
+        eventsWithinRange[i]['longitude'],
+        eventsWithinRange[i]['id'],
+        eventsWithinRange[i]['address'],
+        eventsWithinRange[i]['datetime']
     ];
   }
 };
 
-eventManager.prototype.instantiateMap = function() {
+eventManager.prototype.fillTrimmedEventsArray = function() {
+  var that = this;
+
+  for (i = 0; i < trimmedEvents.length; i++) {
+    that.locations[i] = [trimmedEvents[i]['title'],
+        trimmedEvents[i]['latitude'],
+        trimmedEvents[i]['longitude'],
+        trimmedEvents[i]['id'],
+        trimmedEvents[i]['address'],
+        trimmedEvents[i]['datetime']
+    ];
+  }
+  window.locations = that.locations;
+};
+
+eventManager.prototype.instantiateMap = function(centerLoc) {
   var that = this;
 
   that.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
-    center: new google.maps.LatLng(user_loc[0], user_loc[1]),
+    zoom: 12,
+    center: new google.maps.LatLng(centerLoc[0], centerLoc[1]),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 };
@@ -70,7 +86,7 @@ eventManager.prototype.addHomeMarker = function() {
   var that = this;
 
   var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(user_loc[0], user_loc[1]),
+    position: new google.maps.LatLng(userLoc[0], userLoc[1]),
     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
     map: that.map
   });

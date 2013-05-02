@@ -51,8 +51,8 @@
 <script type="text/javascript">
 google.maps.event.addDomListener(window, 'load', initialize);
 
-window.user_loc = <%= @user_loc.to_json.html_safe %>
-window.events_within_range = <%= @events_within_range.to_json.html_safe %>
-window.trimmed_events = <%= @trimmed_events.to_json.html_safe %>
+window.userLoc = <%= @user_loc.to_json.html_safe %>
+window.eventsWithinRange = <%= @events_within_range.to_json.html_safe %>
+window.trimmedEvents = <%= @trimmed_events.to_json.html_safe %>
 
 </script>
