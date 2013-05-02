@@ -1,6 +1,6 @@
 <div class="row">
 <div class="span7 offset"> <!-- row1, column1 -->
-  <h3>Events Within <%= @distance %> Miles Of Your Location</h3>
+  <h3>Events Within <%= @distance %> Miles Of Your Location:</h3>
   <div id="map" style="width: 550px; height: 400px;"></div>
 </div> <!-- left column -->
 
@@ -23,7 +23,7 @@
       <% end %>
       <%= hidden_field_tag :prev_distance, @distance %>
       <br>
-      <%= submit_tag "Search" %>
+      <%= submit_tag "Search", class: "btn btn-primary", type: "button" %>
 
     <% end %>
   </div>
@@ -40,7 +40,7 @@
     </table>
   </div>
 </div>
-<br>
+
 <%= link_to "Add Event", new_event_url %>
 <br>
 <%= link_to "All Events", events_url %>
