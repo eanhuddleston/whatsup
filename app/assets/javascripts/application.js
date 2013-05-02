@@ -36,13 +36,23 @@ eventManager.prototype.fillEventArrays = function() {
   var that = this;
 
   for (i = 0; i < events_within_range.length; i++) {
-    that.locs_within_range[i] = [events_within_range[i]['title'], events_within_range[i]['latitude'],
-        events_within_range[i]['longitude']];
+    that.locs_within_range[i] = [events_within_range[i]['title'],
+        events_within_range[i]['latitude'],
+        events_within_range[i]['longitude'],
+        events_within_range[i]['id'],
+        events_within_range[i]['address'],
+        events_within_range[i]['datetime']
+    ];
   }
 
   for (i = 0; i < trimmed_events.length; i++) {
-    that.locations[i] = [trimmed_events[i]['title'], trimmed_events[i]['latitude'],
-        trimmed_events[i]['longitude']];
+    that.locations[i] = [trimmed_events[i]['title'],
+        trimmed_events[i]['latitude'],
+        trimmed_events[i]['longitude'],
+        trimmed_events[i]['id'],
+        trimmed_events[i]['address'],
+        trimmed_events[i]['datetime']
+    ];
   }
 };
 
@@ -99,30 +109,31 @@ eventManager.prototype.addEventMarkers = function() {
 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
-        that.infoWindow.setContent(that.locations[i][0]);
+        that.infoWindow.setContent(that.locations[i][0] + "<br>" +
+            that.locations[i][5].substring(0,10) + "<br>" +
+            that.locations[i][5].substring(11,16)
+        );
         that.infoWindow.open(that.map, marker);
       };
     })(marker, i));
 
-    that.addMousoverListeners(marker, i);
+    that.addMousoverListeners(marker, that.locations[i][3]);
   }
 };
 
-eventManager.prototype.addMousoverListeners = function(marker, i) {
+eventManager.prototype.addMousoverListeners = function(marker, evId) {
   var that = this;
 
-  google.maps.event.addListener(marker, 'mouseover', (function(i) {
+  google.maps.event.addListener(marker, 'mouseover', (function(evId) {
     return function() {
-      var evId = i + 1;
       $('div[data-eventid]').removeClass('highlight');
       $('div[data-eventid="' + evId + '"]').addClass('highlight');
     };
-  })(i));
+  })(evId));
 
-  google.maps.event.addListener(marker, 'mouseout', (function(i) {
+  google.maps.event.addListener(marker, 'mouseout', (function(evId) {
     return function() {
-      var evId = i + 1;
       $('div[data-eventid]').removeClass('highlight');
     };
-  })(i));
+  })(evId));
 };
