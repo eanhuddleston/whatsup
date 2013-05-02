@@ -15,8 +15,13 @@
     </p>
 
     <p>
-      <b>Datetime:</b>
-      <%= @event.datetime %>
+      <b>Date:</b>
+      <%= @event.datetime.strftime("%m/%d/%Y") %>
+    </p>
+
+    <p>
+      <b>Time:</b>
+      <%= @event.datetime.strftime("%I:%M%p") %>
     </p>
 
     <p>
@@ -26,6 +31,19 @@
   </div> <!-- end row1, col2 -->
 
 </div>
+
+<div class="row">
+  <div class="span4">
+    <br>
+    <h4>Comments:</h4>
+    <% @comments.each do |comment| %>
+      <div class="event_comment">
+        <%= comment.text %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
 
 <%= link_to 'Edit', edit_event_path(@event) %>
 <br>
