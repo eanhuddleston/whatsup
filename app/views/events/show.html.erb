@@ -36,6 +36,13 @@
   <div class="span4">
     <br>
     <h4>Comments:</h4>
+
+    <%= form_for(@new_comment) do |f| %>
+      <%= f.text_field :text %>
+      <%= f.hidden_field :event_id, :value => @event.id %>
+      <%= f.submit "Add Comment" %>
+    <% end %>
+
     <% @comments.each do |comment| %>
       <div class="event_comment">
         <%= comment.text %>

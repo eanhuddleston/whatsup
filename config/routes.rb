@@ -2,6 +2,7 @@ Whatsup::Application.routes.draw do
   devise_for :users
   resources :events
   resources :maps, :only => [:index]
+  resources :comments, :only => [:create]
 
   get "test/test"
   match '/home' => 'home#index'
