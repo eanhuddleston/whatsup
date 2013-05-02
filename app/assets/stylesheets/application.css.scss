@@ -50,3 +50,17 @@
 .event_comment:nth-child(odd) {  
   background-color: #ccc;
 }
+
+#event_description {
+  height: 100px;
+  width: 300px;
+}
+
+label {
+  font-size: 18px;
+  font-style: bold;
+}
+
+#event_address {
+  width: 300px;
+}
