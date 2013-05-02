@@ -35,7 +35,7 @@
   <div class="span7">
     <table class="table table-striped">
       <% @trimmed_events.each do |event| %>
-        <tr><div data-eventid="<%=event.id%>"><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</div></tr>
+        <tr><div data-eventid="<%=event.id%>"><%= link_to event.title, event %> (<%= event.distance.to_i.round(2) %> miles)</div></tr>
       <% end %>
     </table>
   </div>
