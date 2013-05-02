@@ -1,38 +1,43 @@
 <div class="row">
-<div class="span7">
-  <h4>Events within <%= @distance %> miles</h4>
-  <div id="map" style="width: 500px; height: 400px;"></div>
+<div class="span7 offset"> <!-- row1, column1 -->
+  <h3>Events Within <%= @distance %> Miles Of Your Location</h3>
+  <div id="map" style="width: 550px; height: 400px;"></div>
 </div> <!-- left column -->
 
-<div class="span3">
-  <h4>Narrow Search By:</h4>
+<div class="span3"> <!-- row1, column2 -->
+  <div id="refine-search">
+    <h4>Narrow Search By:</h4>
 
-  <%= form_tag home_url, :method => :get do %>
-      <%= text_field_tag :distance %>
-      Miles From Home
+    <%= form_tag home_url, :method => :get do %>
+        <%= text_field_tag :distance %>
+        <span class="muted">Miles From Home</span>
+        <br>
+        <% @avail_categories.each do |category| %>
+          <%= check_box_tag(
+                "categories[]",
+                category.id,
+                @selected_categories.include?(category)
+              )
+          %>
+        <%= category.name %><br>
+      <% end %>
+      <%= hidden_field_tag :prev_distance, @distance %>
       <br>
-      <% @avail_categories.each do |category| %>
-        <%= check_box_tag(
-              "categories[]",
-              category.id,
-              @selected_categories.include?(category)
-            )
-        %>
-      <%= category.name %><br>
+      <%= submit_tag "Search" %>
+
     <% end %>
-    <%= hidden_field_tag :prev_distance, @distance %>
-    <br>
-    <%= submit_tag "Search" %>
+  </div>
+</div> <!-- end right column -->
 
-  <% end %>
-</div> <!-- right column -->
-
-</div> <!-- first row -->
+</div> <!-- end first row -->
+<br>
 <div class="row">
-  <div class="span5">
-<% @trimmed_events.each do |event| %>
-  <div data-eventid="<%=event.id%>"><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</div>
-<% end %>
+  <div class="span7">
+    <table class="table table-striped">
+      <% @trimmed_events.each do |event| %>
+        <tr><div data-eventid="<%=event.id%>"><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</div></tr>
+      <% end %>
+    </table>
   </div>
 </div>
 <br>
