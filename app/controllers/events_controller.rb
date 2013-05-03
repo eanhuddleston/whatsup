@@ -15,10 +15,9 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @comments = @event.comments
-    puts "***********************"
-    puts @comments.first.user
-    
+
     @new_comment = Comment.new
+    @reservation = Reservation.new
 
     respond_to do |format|
       format.html # show.html.erb

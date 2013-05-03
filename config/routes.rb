@@ -3,6 +3,7 @@ Whatsup::Application.routes.draw do
   resources :events
   resources :maps, :only => [:index]
   resources :comments, :only => [:create]
+  resources :reservations, :only => [:create]
 
   get "test/test"
   match '/home' => 'home#index'

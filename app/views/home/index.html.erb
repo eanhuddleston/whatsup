@@ -6,7 +6,7 @@
 
 <div class="span3"> <!-- row1, column2 -->
   <div id="refine-search">
-    <h4>Narrow Search:</h4>
+    <h4>Refine Search:</h4>
 
     <%= form_tag home_url, :method => :get do %>
         <%= text_field_tag :distance %>
@@ -38,8 +38,8 @@
         <tr><div data-eventid="<%=event.id%>"><%= link_to event.title, event %> (<%= event.distance.to_i.round(2) %> miles)</div></tr>
       <% end %>
     </table>
-  </div>
-</div>
+  </div> <!-- row2, col1 -->
+</div> <!-- row2 -->
 
 <%= link_to "Add Event", new_event_url %>
 <br>

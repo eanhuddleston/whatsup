@@ -37,4 +37,5 @@ class User < ActiveRecord::Base
   after_validation :geocode, :if => :address_changed?
 
   has_many :comments
+  has_many :reservations
 end

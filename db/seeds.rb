@@ -16,6 +16,9 @@ users = User.create([
     {email: "user3@gmail.com", 
       password: "testtest", password_confirmation: "testtest",
       address: "Evans Hall, UC Berkeley" }
+    {email: "user4@gmail.com", 
+      password: "testtest", password_confirmation: "testtest",
+      address: "590 W. 26th ST, Eugene OR" }
 ])
 
 categories = Category.create([
@@ -58,7 +61,12 @@ events = Event.create([
       description: "Come experience the lively art that San Fran has to offer.",
       datetime: DateTime.now + 7.days + 12.hours,
       address: "160 Folsom ST, San Francisco, CA",
-      category_ids: [1]}
+      category_ids: [1]},
+    {title: "Happy Hour at The Snug",
+      description: "Come enjoy a bevy of beverages.",
+      datetime: DateTime.now + 7.days + 12.hours,
+      address: "33 29th Street San Francisco, CA 94110",
+      category_ids: [3]}
 ])
 
 comments = Comment.create([
@@ -70,8 +78,25 @@ comments = Comment.create([
       user_id: 2},
     {text: "Can't wait",
       event_id: 1,
-      user_id: 3}
+      user_id: 3},
+    {text: "Will be the best event ever",
+      event_id: 1,
+      user_id: 4},
+    {text: "Oh joy",
+      event_id: 1,
+      user_id: 1}
 ])
+
+# reservations = Reservation.create([
+#     {event_id: 1,
+#       user_id: 1},
+#     {event_id: 1,
+#       user_id: 2},
+#     {event_id: 1,
+#       user_id: 3},
+#     {event_id: 1,
+#       user_id: 4}
+# ])
 
 
 # DateTime.new(2013,7,27,16,0,0)
