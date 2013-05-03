@@ -19,7 +19,13 @@ class HomeController < ApplicationController
       @distance = 3
     end
 
-    if params[:categories] && ( params[:distance] == "" )
+    if params[:search_days] && params[:search_days] != ""
+      @search_days = params[:search_days].to_i
+    else
+      @search_days = 7
+    end
+
+    if params[:categories]
       @selected_categories = params[:categories].map {|id| Category.find(id)}
     else
       @selected_categories = Category.all
@@ -27,9 +33,13 @@ class HomeController < ApplicationController
 
     @events_within_range = Event.near(@user_loc, @distance)
     @trimmed_events = []
+
     @events_within_range.each do |event|
       if @selected_categories.include?(event.categories[0])
-        @trimmed_events << event
+        if ( (event.datetime > DateTime.now) && 
+            (event.datetime < DateTime.now + @search_days.days) )
+          @trimmed_events << event
+        end
       end
     end
 
