@@ -10,13 +10,15 @@ class HomeController < ApplicationController
 
     @user = current_user
     @user_loc = [@user.latitude, @user.longitude]
+    puts "**************************"
+    puts @user_loc
 
     if params[:distance] && params[:distance] != ""
       @distance = params[:distance]
     elsif params[:prev_distance]
       @distance = params[:prev_distance]
     else
-      @distance = 3
+      @distance = 4
     end
 
     if params[:search_days] && params[:search_days] != ""

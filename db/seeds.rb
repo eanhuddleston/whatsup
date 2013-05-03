@@ -14,7 +14,7 @@ users = User.create([
     {email: "user2@gmail.com",
       name: "zoolander5",
       password: "testtest", password_confirmation: "testtest",
-      address: "160 Folsom ST, San Francisco" },
+      address: "342 Howard St, San Francisco, CA" },
     {email: "user3@gmail.com",
       name: "godfather", 
       password: "testtest", password_confirmation: "testtest",
@@ -63,12 +63,12 @@ events = Event.create([
       category_ids: [7]},
     {title: "San Francisco Art Street Fair",
       description: "Come experience the lively art that San Fran has to offer.",
-      datetime: DateTime.now + 7.days + 12.hours,
+      datetime: DateTime.now + 6.days + 12.hours,
       address: "160 Folsom ST, San Francisco, CA",
       category_ids: [1]},
     {title: "Happy Hour at The Snug",
       description: "Come enjoy a bevy of beverages.",
-      datetime: DateTime.now + 7.days + 12.hours,
+      datetime: DateTime.now + 1.days + 12.hours,
       address: "33 29th Street San Francisco, CA 94110",
       category_ids: [3]}
 ])

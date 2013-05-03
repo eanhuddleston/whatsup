@@ -10,11 +10,12 @@
 
       <%= form_tag home_url, :method => :get do %>
         <%= text_field_tag :distance %>
-        <span class="muted">Miles From Home</span>
+        <b>Miles From Home</b>
         <br>
         <%= hidden_field_tag :search_days, @search_days %>
         <%= button_tag "Change Distance", class: "btn btn-primary" %>
       <% end %>
+      <br>
 
       <%= form_tag home_url, :method => :get do %>
         <% @avail_categories.each do |category| %>
