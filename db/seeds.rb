@@ -8,15 +8,19 @@
 
 users = User.create([
     {email: "user1@gmail.com",
+      name: "bobbo",
       password: "testtest", password_confirmation: "testtest",
       address: "2007 Prince ST, Berkeley CA" }, 
-    {email: "user2@gmail.com", 
+    {email: "user2@gmail.com",
+      name: "zoolander5",
       password: "testtest", password_confirmation: "testtest",
       address: "160 Folsom ST, San Francisco" },
-    {email: "user3@gmail.com", 
+    {email: "user3@gmail.com",
+      name: "godfather", 
       password: "testtest", password_confirmation: "testtest",
-      address: "Evans Hall, UC Berkeley" }
-    {email: "user4@gmail.com", 
+      address: "Evans Hall, UC Berkeley" },
+    {email: "user4@gmail.com",
+      name: "suzy q", 
       password: "testtest", password_confirmation: "testtest",
       address: "590 W. 26th ST, Eugene OR" }
 ])
@@ -87,16 +91,16 @@ comments = Comment.create([
       user_id: 1}
 ])
 
-# reservations = Reservation.create([
-#     {event_id: 1,
-#       user_id: 1},
-#     {event_id: 1,
-#       user_id: 2},
-#     {event_id: 1,
-#       user_id: 3},
-#     {event_id: 1,
-#       user_id: 4}
-# ])
+reservations = Reservation.create([
+    {event_id: 1,
+      user_id: 1},
+    {event_id: 1,
+      user_id: 2},
+    {event_id: 1,
+      user_id: 3},
+    {event_id: 1,
+      user_id: 4}
+])
 
 
 # DateTime.new(2013,7,27,16,0,0)

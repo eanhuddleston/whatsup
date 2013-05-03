@@ -45,6 +45,7 @@
     <% @comments.each do |comment| %>
       <div class="event_comment">
         <%= comment.text %>
+        <t>-<b><%= comment.user.name %></b>
       </div>
     <% end %>
   </div> <!-- row2, col1 -->
