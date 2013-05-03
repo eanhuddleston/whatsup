@@ -35,7 +35,7 @@
     <%= check_box_tag(
           "event[category_ids][]",
           category.id,
-          false
+          @event.categories.include?(category)
         )
     %>
     <%= category.name %><br>
