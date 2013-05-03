@@ -50,7 +50,7 @@
     <% end %>
   </div> <!-- row2, col1 -->
   <div class="span4"> <!-- row2, col2 -->
-    <h5>People attending: <%= Reservation.all.count %></h5>
+    <h5>People attending: <%= @event.reservations.count %></h5>
     <%= form_for(@reservation) do |f| %>
       <%= f.hidden_field :event_id, :value => @event.id %>
       <%= f.submit "Count me in!" %>
