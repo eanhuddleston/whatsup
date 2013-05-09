@@ -26,4 +26,18 @@ class Event < ActiveRecord::Base
   has_many :comments
 
   has_many :reservations
+
+  def self.trim(events_within_range, search_days, selected_categories)
+    relevant_events = []
+    events_within_range.each do |event|
+      if selected_categories.include?(event.categories[0])
+        if ( (event.datetime > DateTime.now) && 
+            (event.datetime < DateTime.now + search_days.days) )
+          relevant_events << event
+        end
+      end
+    end
+
+    relevant_events
+  end
 end

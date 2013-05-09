@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
 
   has_many :comments
   has_many :reservations
+
+  def loc
+    [latitude, longitude]
+  end
 end
