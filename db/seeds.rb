@@ -22,7 +22,11 @@ users = User.create([
     {email: "user4@gmail.com",
       name: "suzy q", 
       password: "testtest", password_confirmation: "testtest",
-      address: "590 W. 26th ST, Eugene OR" }
+      address: "590 W. 26th ST, Eugene OR" },
+    {email: "demo@demo.com",
+      name: "demo", 
+      password: "demodemo", password_confirmation: "demodemo",
+      address: "2007 Prince ST, Berkeley, CA" }
 ])
 
 categories = Category.create([

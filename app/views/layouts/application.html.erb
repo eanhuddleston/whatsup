@@ -18,7 +18,9 @@
 
     <div class="hmenu">
       <%#= render 'devise/menu/registration_items' %>
-      <%= render 'devise/menu/login_items' %>
+      <% if current_user %>
+        <%= render 'devise/menu/login_items' %>
+      <% end %>
     </div>
 
     <%= yield %>
