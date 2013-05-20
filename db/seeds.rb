@@ -18,13 +18,16 @@ users = User.create([
     {email: "user3@gmail.com",
       name: "godfather", 
       password: "testtest", password_confirmation: "testtest",
-      address: "Evans Hall, UC Berkeley" },
+      address: "Evans Hall, UC Berkeley" }
+])
+
+users2 = User.create([
     {email: "user4@gmail.com",
-      name: "suzy q", 
+      name: "suzy q",
       password: "testtest", password_confirmation: "testtest",
       address: "590 W. 26th ST, Eugene OR" },
     {email: "demo@demo.com",
-      name: "demo", 
+      name: "demo",
       password: "demodemo", password_confirmation: "demodemo",
       address: "2007 Prince ST, Berkeley, CA" }
 ])
