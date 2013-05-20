@@ -62,7 +62,10 @@ events = Event.create([
       description: "Come enjoy some cheap drinks great atmosphere.",
       datetime: DateTime.now + 2.days + 12.hours,
       address: "1822 San Pablo Avenue, Berkeley, CA 94710",
-      category_ids: [3]},
+      category_ids: [3]}
+])
+
+events2 = Event.create([
     {title: "Museum Grand Opening",
       description: "See some neato stuff.",
       datetime: DateTime.now + 6.days + 12.hours,
