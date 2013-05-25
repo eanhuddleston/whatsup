@@ -1,3 +1,0 @@
-== WhatsUp.com
-
-An event-discovery web app, where users can submit events and search for upcoming events based on several criteria (e.g., distance from home, event type, event date).
