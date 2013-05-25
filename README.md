@@ -1,10 +1,6 @@
-== WhatsUp.com
+##WhatsUp.com
 
-###[View demo on Heroku][whatsup-data]
-
-[whatsup-data]: http://fast-mountain-5331.herokuapp.com
-
-##[WhatsUp.com](http://fast-mountain-5331.herokuapp.com)
+[View demo on Heroku](http://fast-mountain-5331.herokuapp.com)
 
 This project was implemented in 4 days, as a final project at App Academy.
 
